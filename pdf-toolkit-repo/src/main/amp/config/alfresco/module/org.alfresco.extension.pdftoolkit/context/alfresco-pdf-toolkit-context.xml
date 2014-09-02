@@ -33,7 +33,7 @@
       <property name="createNew" value="true"/>
    </bean>
 
-	<!-- pdfappend -->
+   <!-- pdfappend -->
 	<bean id="pdf-append"
 		class="org.alfresco.extension.pdftoolkit.repo.action.executer.PDFAppendActionExecuter"
 		parent="action-executer" depends-on="pdftoolkit-messages">
@@ -180,6 +180,7 @@
 	</bean>
 	
 	<!-- pdf-convert-to-archivable -->
+   <!--
 	<bean id="pdf-convert-to-archivable"
 		class="org.alfresco.extension.pdftoolkit.repo.action.executer.PDFConvertToArchivableActionExecuter"
 		parent="action-executer" depends-on="pdftoolkit-messages">
@@ -199,8 +200,9 @@
 			<ref bean="jodconverter.shared.instance"/>
 		</property>
 	</bean>
-	
+	-->
 	<!-- Import the swftools transformer worker from the third party subsystem -->
+   <!--
    	<bean id="jodconverter.shared.instance" class="org.alfresco.repo.management.subsystems.SubsystemProxyFactory">
       	<property name="sourceApplicationContextFactory">
         	<ref bean="OOoJodconverter" />
@@ -214,7 +216,7 @@
          	</list>
       	</property>
    	</bean>
-   
+    -->
 	<!--<bean id="pdftoolkit-jod" class="org.alfresco.enterprise.repo.content.JodConverterSharedInstance">
        <property name="officeHome">
           <value>${jodconverter.officeHome}</value>

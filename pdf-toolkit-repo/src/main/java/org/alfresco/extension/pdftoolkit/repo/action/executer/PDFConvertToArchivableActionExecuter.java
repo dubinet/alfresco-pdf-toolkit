@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.alfresco.enterprise.repo.content.JodConverter;
+
 import org.alfresco.error.AlfrescoRuntimeException;
 import org.alfresco.extension.pdftoolkit.constraints.MapConstraint;
 import org.alfresco.model.ContentModel;
@@ -22,11 +22,7 @@ import org.alfresco.service.cmr.repository.NodeService;
 import org.alfresco.util.SocketOpenOfficeConnection;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.artofsolving.jodconverter.OfficeDocumentConverter;
-import org.artofsolving.jodconverter.document.DefaultDocumentFormatRegistry;
-import org.artofsolving.jodconverter.document.DocumentFamily;
-import org.artofsolving.jodconverter.document.DocumentFormat;
-import org.artofsolving.jodconverter.document.DocumentFormatRegistry;
+
 
 public class PDFConvertToArchivableActionExecuter extends BasePDFActionExecuter 
 {
@@ -49,8 +45,7 @@ public class PDFConvertToArchivableActionExecuter extends BasePDFActionExecuter
     public static HashMap<String, String> archiveLevelConstraint          = new HashMap<String, String>();
     
     private final String PDFA											  = "PDF/A";
-    
-    private JodConverter jodConverter;
+
     
     /**
      * Add parameter definitions
@@ -68,60 +63,10 @@ public class PDFConvertToArchivableActionExecuter extends BasePDFActionExecuter
 	protected void executeImpl(Action action, NodeRef actionedUponNodeRef) 
 	{
 		
-		NodeService ns = serviceRegistry.getNodeService();
-		ContentService cs = serviceRegistry.getContentService();
-		
-		if(!ns.exists(actionedUponNodeRef))
-		{
-			throw new AlfrescoRuntimeException("PDF/A convert action called on non-existent node: " + actionedUponNodeRef);
-		}
-		
-        Boolean inplace = Boolean.valueOf(String.valueOf(action.getParameterValue(PARAM_INPLACE)));
-        Integer archiveLevel = Integer.valueOf(String.valueOf(action.getParameterValue(PARAM_ARCHIVE_LEVEL)));
-        
-		// get an output file for the new PDF (temp file)
-        File out = getTempFile(actionedUponNodeRef);
-                   
-        // copy the source node content to a temp file
-        File in = nodeRefToTempFile(actionedUponNodeRef);
-        
-		// transform to PDF/A
-        DocumentFormatRegistry formatRegistry = new DefaultDocumentFormatRegistry();
-        formatRegistry.getFormatByExtension(PDF).setInputFamily(DocumentFamily.DRAWING);
-        OfficeDocumentConverter converter = new OfficeDocumentConverter(jodConverter.getOfficeManager(), formatRegistry);
-        
-		converter.convert(in, out, getDocumentFormat(archiveLevel));
-		
-		NodeRef destinationNode = createDestinationNode(String.valueOf(ns.getProperty(actionedUponNodeRef, ContentModel.PROP_NAME)), 
-        		(NodeRef)action.getParameterValue(PARAM_DESTINATION_FOLDER), actionedUponNodeRef, inplace);
-        ContentWriter writer = serviceRegistry.getContentService().getWriter(destinationNode, ContentModel.PROP_CONTENT, true);
-        writer.setEncoding(cs.getReader(actionedUponNodeRef, ContentModel.PROP_CONTENT).getEncoding());
-        writer.setMimetype(FILE_MIMETYPE);
-        writer.putContent(out);
-
-        // delete the temp files
-        in.delete();
-        out.delete();
 
 	}
 
-	/**
-	* Returns a DocumentFormat that will output to PDF/A
-	*/
-	private DocumentFormat getDocumentFormat(int level) {
 
-		DocumentFormat format = new DocumentFormat(PDFA, PDF, FILE_MIMETYPE);
-	    Map<String, Object> properties = new HashMap<String, Object>();
-	    properties.put("FilterName", "draw_pdf_Export");
-
-	    Map<String, Object> filterData = new HashMap<String, Object>();
-	    filterData.put("SelectPdfVersion", level);
-	    properties.put("FilterData", filterData);
-
-	    format.setStoreProperties(DocumentFamily.DRAWING, properties);
-
-	    return format;
-	}
 	
     /**
      * Setter for constraint bean
@@ -133,8 +78,4 @@ public class PDFConvertToArchivableActionExecuter extends BasePDFActionExecuter
         archiveLevelConstraint.putAll(mc.getAllowableValues());
     }
 
-    public void setJodConverter(JodConverter jodConverter)
-    {
-    	this.jodConverter = jodConverter;
-    }
 }

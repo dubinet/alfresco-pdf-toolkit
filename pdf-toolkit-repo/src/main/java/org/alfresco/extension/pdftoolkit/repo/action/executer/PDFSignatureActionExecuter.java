@@ -33,6 +33,7 @@ import java.security.cert.CertificateException;
 import java.util.HashMap;
 import java.util.List;
 
+import com.itextpdf.text.pdf.PdfDictionary;
 import org.alfresco.error.AlfrescoRuntimeException;
 import org.alfresco.extension.pdftoolkit.constraints.MapConstraint;
 import org.alfresco.extension.pdftoolkit.model.PDFToolkitModel;
@@ -258,7 +259,11 @@ public class PDFSignatureActionExecuter
             FileOutputStream fout = new FileOutputStream(file);
             PdfStamper stamp = PdfStamper.createSignature(reader, fout, '\0');
             PdfSignatureAppearance sap = stamp.getSignatureAppearance();
-            sap.setCrypto(key, chain, null, PdfSignatureAppearance.WINCER_SIGNED);
+
+            // sap.setCrypto(key, chain, null, PdfSignatureAppearance.WINCER_SIGNED);
+            // TODO: Fix encryption, the above is old method, below what you need to use now.
+            // Probably must include option for what you are allowed to do.
+            //stamp.setEncryption();
 
             // set reason for signature and location of signer
             sap.setReason(reason);
