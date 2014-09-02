@@ -8,7 +8,7 @@
     <description>Alfresco Share Client</description>
 
     <parent>
-        <groupId>org.alfresco.extension</groupId>
+        <groupId>se.loftux.extensions.pdf-toolkit</groupId>
         <artifactId>pdf-toolkit</artifactId>
         <version>1.2-SNAPSHOT</version>
     </parent>
@@ -30,6 +30,13 @@
     </dependencies>
     <build>
         <plugins>
+           <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-deploy-plugin</artifactId>
+              <configuration>
+                 <skip>true</skip>
+              </configuration>
+           </plugin>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>

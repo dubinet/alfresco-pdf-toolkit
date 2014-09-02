@@ -7,9 +7,9 @@
     <description>Alfresco PDF Toolkit Share customizations</description>
 
     <parent>
-        <groupId>org.alfresco.extension</groupId>
-        <artifactId>pdf-toolkit</artifactId>
-        <version>1.2-SNAPSHOT</version>
+       <groupId>se.loftux.extensions.pdf-toolkit</groupId>
+       <artifactId>pdf-toolkit</artifactId>
+       <version>1.2-SNAPSHOT</version>
     </parent>
 
     <!--

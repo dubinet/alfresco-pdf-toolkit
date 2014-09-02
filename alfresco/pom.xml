@@ -19,9 +19,9 @@
     <description>Alfresco Repository and Explorer Client</description>
 
     <parent>
-        <groupId>org.alfresco.extension</groupId>
-        <artifactId>pdf-toolkit</artifactId>
-        <version>1.2-SNAPSHOT</version>
+       <groupId>se.loftux.extensions.pdf-toolkit</groupId>
+       <artifactId>pdf-toolkit</artifactId>
+       <version>1.2-SNAPSHOT</version>
     </parent>
 
     <dependencies>
@@ -70,6 +70,13 @@
                     </overlays>
                 </configuration>
             </plugin>
+           <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-deploy-plugin</artifactId>
+              <configuration>
+                 <skip>true</skip>
+              </configuration>
+           </plugin>
         </plugins>
     </build>
     <profiles>

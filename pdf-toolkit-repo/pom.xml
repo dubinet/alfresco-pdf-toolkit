@@ -7,7 +7,7 @@
     <description>Alfresco PDF Toolkit repository extensions</description>
 
     <parent>
-        <groupId>org.alfresco.extension</groupId>
+        <groupId>se.loftux.extensions.pdf-toolkit</groupId>
         <artifactId>pdf-toolkit</artifactId>
         <version>1.2-SNAPSHOT</version>
     </parent>
@@ -20,29 +20,37 @@
     -->
     <dependencies>
     	<dependency>
-			<groupId>org.alfresco</groupId>
+			<groupId>${alfresco.groupId}</groupId>
 			<artifactId>alfresco-core</artifactId>
+         <version>${alfresco.version}</version>
+         <scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.alfresco</groupId>
+			<groupId>${alfresco.groupId}</groupId>
 			<artifactId>alfresco-data-model</artifactId>
+         <version>${alfresco.version}</version>
+         <scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.alfresco</groupId>
+			<groupId>${alfresco.groupId}</groupId>
 			<artifactId>alfresco-repository</artifactId>
+         <version>${alfresco.version}</version>
+         <scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.alfresco</groupId>
-			<artifactId>alfresco-enterprise-repository</artifactId>
+			<groupId>${alfresco.groupId}</groupId>
+			<artifactId>alfresco-repository</artifactId>
 			<version>${alfresco.version}</version>
-			<scope>compile</scope>
+         <scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.alfresco</groupId>
+			<groupId>${alfresco.groupId}</groupId>
 			<artifactId>alfresco-web-client</artifactId>
+         <version>${alfresco.version}</version>
+         <scope>provided</scope>
 			<exclusions>
                <exclusion>
-                  <groupId>org.alfresco</groupId>
+                  <groupId>${alfresco.groupId}</groupId>
                   <artifactId>alfresco-web-framework-commons</artifactId>
               </exclusion>
            	</exclusions>
@@ -56,7 +64,7 @@
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itextpdf</artifactId>
-			<version>5.0.6</version>
+			<version>5.5.2</version>
 			<type>jar</type>
 			<exclusions>
 				<exclusion>
