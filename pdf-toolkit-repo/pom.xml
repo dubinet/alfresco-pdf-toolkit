@@ -43,18 +43,6 @@
 			<version>${alfresco.version}</version>
          <scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>${alfresco.groupId}</groupId>
-			<artifactId>alfresco-web-client</artifactId>
-         <version>${alfresco.version}</version>
-         <scope>provided</scope>
-			<exclusions>
-               <exclusion>
-                  <groupId>${alfresco.groupId}</groupId>
-                  <artifactId>alfresco-web-framework-commons</artifactId>
-              </exclusion>
-           	</exclusions>
-		</dependency>
         <dependency>
 			<groupId>org.apache.pdfbox</groupId>
 			<artifactId>pdfbox</artifactId>
