@@ -173,8 +173,11 @@
         class="org.alfresco.extension.pdftoolkit.service.PDFToolkitService">
         <property name="extensionName">
             <value>pdftoolkit</value>
-        </property>     
-        <property name="serviceRegistry" ref="ServiceRegistry"/>
+        </property>
+        <property name="serviceRegistry">
+           <ref bean="ServiceRegistry" />
+        </property>
+
     </bean>   
     
     <bean id="pdftoolkit.properties" parent="common-placeholder-configurer">

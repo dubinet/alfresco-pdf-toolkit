@@ -30,6 +30,7 @@ import org.alfresco.extension.pdftoolkit.repo.action.executer.PDFSignatureAction
 import org.alfresco.extension.pdftoolkit.repo.action.executer.PDFSplitActionExecuter;
 import org.alfresco.extension.pdftoolkit.repo.action.executer.PDFSplitAtPageActionExecuter;
 import org.alfresco.extension.pdftoolkit.repo.action.executer.PDFWatermarkActionExecuter;
+import org.alfresco.extension.pdftoolkit.repo.action.executer.PDFCompressActionExecuter;
 import org.alfresco.repo.processor.BaseProcessorExtension;
 import org.alfresco.service.ServiceException;
 import org.alfresco.service.ServiceRegistry;
@@ -198,6 +199,30 @@ public class PDFToolkitService extends BaseProcessorExtension
     	}
     	
     	this.executePDFAction(PDFWatermarkActionExecuter.NAME, params, toWatermark);
+    }
+
+    /**
+     * Wrapper for the compress PDF action. This calls the PDFCompressActionExecuter
+     *
+     * When used in a JS context, this code expects a JSON object to with the following structure:
+     *
+     * 	{
+     * 		target : "workspace:SpacesStore://node-uuid",
+     * 		destination-folder : "workspace:SpacesStore://node-uuid",
+     * 		compression-level : 9 ,
+     * 	    image-compression-level : 6
+     * 	}
+     *
+     * Compression levels are 1-9 (low compression - high compression).
+     * Image compression level has biggest impact on Scanned pdf:s, general compression for the
+     * pdf impacts stored fonts etc that are removed.
+     *
+     */
+    public void compressPDF(NativeObject obj)
+    {
+        Map<String, Serializable> params = buildParamMap(obj);
+        NodeRef toCompress = getActionTargetNode(params);
+        this.executePDFAction(PDFCompressActionExecuter.NAME, params, toCompress);
     }
 
     /**

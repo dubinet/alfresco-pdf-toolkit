@@ -18,6 +18,21 @@
         <property name="createNew" value="true"/>
 	</bean>
 
+   <!-- pdfcompress -->
+   <bean id="pdf-compress"
+         class="org.alfresco.extension.pdftoolkit.repo.action.executer.PDFCompressActionExecuter"
+         parent="action-executer" depends-on="pdftoolkit-messages">
+      <property name="serviceRegistry">
+         <ref bean="ServiceRegistry" />
+      </property>
+      <property name="applicableTypes">
+         <list>
+            <value>{http://www.alfresco.org/model/content/1.0}content</value>
+         </list>
+      </property>
+      <property name="createNew" value="true"/>
+   </bean>
+
 	<!-- pdfappend -->
 	<bean id="pdf-append"
 		class="org.alfresco.extension.pdftoolkit.repo.action.executer.PDFAppendActionExecuter"
