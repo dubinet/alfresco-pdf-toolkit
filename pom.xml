@@ -51,19 +51,7 @@
      </dependencies>
   </dependencyManagement>
 
-   <build>
-      <plugins>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-deploy-plugin</artifactId>
-            <configuration>
-               <skip>true</skip>
-            </configuration>
-            <inherited>false</inherited>
-         </plugin>
-      </plugins>
-   </build>
-    <!-- This repository is only needed to retrieve Alfresco parent POM. 
+    <!-- This repository is only needed to retrieve Alfresco parent POM.
         NOTE: This can be removed when/if Alfresco will be on Maven Central 
         
         NOTE: The repository to be used for Alfresco Enterprise artifacts is
