@@ -72,13 +72,17 @@
         if you are a Enterprise customer or Partner  
         -->
     <repositories>
+       <repository>
+          <id>loftux</id>
+          <url>http://artifacts.loftux.net/nexus/content/groups/public</url>
+       </repository>
+       <repository>
+          <id>loftux-extension</id>
+          <url>http://artifacts.loftux.net/nexus/content/repositories/loftux-extension</url>
+       </repository>
         <repository>
             <id>alfresco-public</id>
             <url>https://artifacts.alfresco.com/nexus/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>alfresco-private</id>
-            <url>https://artifacts.alfresco.com/nexus/content/groups/private</url>
         </repository>
         <repository>
             <id>alfresco-public-snapshots</id>
