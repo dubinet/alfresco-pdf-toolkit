@@ -77,5 +77,17 @@
         <!-- Defines the target WAR version to run this amp, only used with the -Pamp-to-war switch -->
         <!-- <alfresco.client.war.version>${alfresco.version}</alfresco.client.war.version> -->
     </properties>
+    <build>
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-deploy-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<skip>true</skip>-->
+                <!--</configuration>-->
+                <!--<inherited>false</inherited>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    </build>
     
 </project>
