@@ -165,19 +165,19 @@
 	</bean>
 	
 	<!-- Import the swftools transformer worker from the third party subsystem -->
-   	<bean id="jodconverter.shared.instance" class="org.alfresco.repo.management.subsystems.SubsystemProxyFactory">
-      	<property name="sourceApplicationContextFactory">
-        	<ref bean="OOoJodconverter" />
-      	</property>
-      	<property name="sourceBeanName">
-         	<value>jodconverter.shared.instance</value>
-      	</property>
-      	<property name="interfaces">
-         	<list>
-            	<value>org.alfresco.enterprise.repo.content.JodConverter</value>
-         	</list>
-      	</property>
-   	</bean>
+   	<!--<bean id="jodconverter.shared.instance" class="org.alfresco.repo.management.subsystems.SubsystemProxyFactory">-->
+      	<!--<property name="sourceApplicationContextFactory">-->
+        	<!--<ref bean="OOoJodconverter" />-->
+      	<!--</property>-->
+      	<!--<property name="sourceBeanName">-->
+         	<!--<value>jodconverter.shared.instance</value>-->
+      	<!--</property>-->
+      	<!--<property name="interfaces">-->
+         	<!--<list>-->
+            	<!--<value>org.alfresco.enterprise.repo.content.JodConverter</value>-->
+         	<!--</list>-->
+      	<!--</property>-->
+   	<!--</bean>-->
    
 	<!--<bean id="pdftoolkit-jod" class="org.alfresco.enterprise.repo.content.JodConverterSharedInstance">
        <property name="officeHome">
