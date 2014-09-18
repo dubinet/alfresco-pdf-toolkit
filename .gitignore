@@ -8,4 +8,7 @@ alf_data_dev/*
 solr/solr_home
 *.log.*
 *.log
-
+*.iml
+*.tree
+.idea
+overlays
