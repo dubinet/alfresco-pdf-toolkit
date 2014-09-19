@@ -94,6 +94,7 @@
             </list>
         </property>
         <property name="createNew" value="true"/>
+        <property name="freemarkerProcessor" ref="freeMarkerProcessor"/>
 	</bean>
 	
 	<!-- pdfencryption -->

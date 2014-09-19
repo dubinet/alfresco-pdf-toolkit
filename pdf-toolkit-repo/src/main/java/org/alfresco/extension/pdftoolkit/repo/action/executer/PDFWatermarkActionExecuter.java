@@ -85,6 +85,10 @@ public class PDFWatermarkActionExecuter
 
     private static final String           FILE_MIMETYPE            = "application/pdf";
 
+    public void setFreemarkerProcessor(FreeMarkerProcessor freemarkerProcessor) {
+        this.freemarkerProcessor = freemarkerProcessor;
+    }
+
     private FreeMarkerProcessor           freemarkerProcessor;
 
     /**
@@ -101,13 +105,6 @@ public class PDFWatermarkActionExecuter
     public static final String            FONT_OPTION_TIMES_ROMAN  = BaseFont.TIMES_ROMAN;
 
     private static final float            PAD                      = 15;
-
-
-    public PDFWatermarkActionExecuter()
-    {
-
-        freemarkerProcessor = new FreeMarkerProcessor();
-    }
 
 
     /**
