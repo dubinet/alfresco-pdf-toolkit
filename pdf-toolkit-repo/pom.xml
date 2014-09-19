@@ -20,41 +20,44 @@
     -->
     <dependencies>
     	<dependency>
-			<groupId>${alfresco.groupId}</groupId>
-			<artifactId>alfresco-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>${alfresco.groupId}</groupId>
-			<artifactId>alfresco-data-model</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>${alfresco.groupId}</groupId>
-			<artifactId>alfresco-repository</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>${alfresco.groupId}</groupId>
-			<artifactId>alfresco-repository</artifactId>
-			<version>${alfresco.version}</version>
-			<scope>compile</scope>
-		</dependency>
+		<groupId>${alfresco.groupId}</groupId>
+		<artifactId>alfresco-core</artifactId>
+         	<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>${alfresco.groupId}</groupId>
+		<artifactId>alfresco-data-model</artifactId>
+        	 <scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>${alfresco.groupId}</groupId>
+		<artifactId>alfresco-repository</artifactId>
+        	 <scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>${alfresco.groupId}</groupId>
+		<artifactId>alfresco-repository</artifactId>
+		<version>${alfresco.version}</version>
+		<scope>provided</scope>
+	</dependency>
         <dependency>
-			<groupId>org.apache.pdfbox</groupId>
-			<artifactId>pdfbox</artifactId>
-			<version>1.7.0-alfresco-patched</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>itextpdf</artifactId>
-			<version>5.0.6</version>
-			<type>jar</type>
-			<exclusions>
-				<exclusion>
-					<groupId>*</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+		<groupId>org.apache.pdfbox</groupId>
+		<artifactId>pdfbox</artifactId>
+		<version>1.7.0-alfresco-patched</version>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>com.itextpdf</groupId>
+		<artifactId>itextpdf</artifactId>
+		<version>5.0.6</version>
+		<type>jar</type>
+		<exclusions>
+			<exclusion>
+				<groupId>*</groupId>
+				<artifactId>*</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
         <!--<dependency>-->
             <!--<groupId>com.artofsolving</groupId>-->
             <!--<artifactId>jodconverter</artifactId>-->
