@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.alfresco.maven</groupId>
         <artifactId>alfresco-sdk-parent</artifactId>
-        <version>2.0.0-beta-2</version>
+        <version>2.0.1-SNAPSHOT</version>
     </parent>
     
     <!-- 
@@ -24,13 +24,14 @@
             | NOTE: Please Refer to Alfresco Support for access to Enterprise artifacts -->
         <alfresco.groupId>se.loftux.alfresco</alfresco.groupId>
         <!-- Defines the Alfresco version to work against. Allowed values are: org.alfresco | org.alfresco.enterprise -->
-        <alfresco.version>5.0.b.LX67-SNAPSHOT</alfresco.version>
+        <alfresco.version>LX80</alfresco.version>
         <!-- This control the root logging level for all apps -->
         <app.log.root.level>WARN</app.log.root.level>
         <!-- This controls the default data location for dir.root -->
         <alfresco.data.location>alf_data_dev</alfresco.data.location>
         <!-- This controls which properties will be picked in multi-enviromment build -->
         <env>local</env>
+        <alfresco.client.contextPath>/alfresco</alfresco.client.contextPath>
     </properties>
 
    <!-- Here we realize the connection with the Alfresco selected platform (e.g.version and edition) -->
