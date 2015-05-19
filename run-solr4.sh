@@ -7,5 +7,5 @@ if [ ! -f $springloadedfile ]; then
 mvn validate -Psetup
 fi
 cd solr
-MAVEN_OPTS=" -Xms256m -Xmx2G -XX:PermSize=300m" mvn integration-test -Dmaven.tomcat.port=8082
-#MAVEN_OPTS=" -Xms256m -Xmx2G -XX:PermSize=300m" mvn integration-test -Psolr-to-war -Dmaven.tomcat.port=8082
+#MAVEN_OPTS=" -Xms256m -Xmx2G -XX:PermSize=300m" mvn integration-test -Dmaven.tomcat.port=8082
+MAVEN_OPTS=" -Xms256m -Xmx2G -XX:PermSize=300m" mvn integration-test -Psolr-to-war -Dmaven.tomcat.port=8082

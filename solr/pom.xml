@@ -1,162 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>solr</artifactId>
-    <name>Alfresco Apache Solr customization</name>
-    <packaging>pom</packaging>
-    <description>Alfresco Apache Solr Customization</description>
+    <artifactId>solr-run</artifactId>
+    <name>Alfresco Apache Solr Runner Project</name>
+    <packaging>war</packaging>
+    <description>Alfresco Apache Solr Runner</description>
 
     <parent>
         <groupId>se.loftux.extensions.pdf-toolkit</groupId>
         <artifactId>pdf-toolkit</artifactId>
-        <version>${project.version}</version>
+        <version>1.5-SNAPSHOT</version>
     </parent>
 
+
+    <!-- The folder where the solr.home directory will be created. NOTE: this doesn't get cleaned by mvn clean, you need to invoke -Ppurge to clean this folder or remove it manually  -->
     <properties>
         <alfresco.solr.dir>${project.basedir}/solr_home</alfresco.solr.dir>
-        <alfresco.solr.war.overlay>${project.build.directory}/${project.artifactId}-overlay</alfresco.solr.war.overlay>
+        <maven.tomcat.port>8082</maven.tomcat.port>
+        <alfresco.solr.id>alfresco-solr4</alfresco.solr.id>
+        <solr.client.contextPath>/solr4</solr.client.contextPath>
     </properties>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-                <inherited>false</inherited>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-alfresco-community-lib</id>
-                        <goals><goal>unpack</goal></goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <outputDirectory>${alfresco.solr.dir}</outputDirectory>
-                            <artifactItems>
-                                <artifactItem>
-                                    <artifactId>alfresco-solr</artifactId>
-                                    <groupId>${alfresco.groupId}</groupId>
-                                    <version>${alfresco.version}</version>
-                                    <type>zip</type>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
-                <executions>
-                    <execution>
-                        <id>overlay-solr-war</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                           <goal>unpack</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                           <outputDirectory>${alfresco.solr.dir}</outputDirectory>
-                           <artifactItems>
-                              <artifactItem>
-                                 <artifactId>${alfresco.solr.id}</artifactId>
-                                 <groupId>${alfresco.groupId}</groupId>
-                                 <classifier>config</classifier>
-                                 <version>${alfresco.version}</version>
-                                 <type>zip</type>
-                              </artifactItem>
-                           </artifactItems>
-                        </configuration>
-                     </execution>
-                     <execution>
-                        <id>unpack-alfresco</id>
-                        <phase>prepare-package</phase>
-                        <goals><goal>unpack</goal></goals>
-                        <configuration>
-                           <outputDirectory>${alfresco.client.war.folder}</outputDirectory>
-                           <artifactItems>
-                              <artifactItem>
-                                 <groupId>${alfresco.groupId}</groupId>
-                                 <artifactId>${alfresco.solr.id}</artifactId>
-                                 <type>war</type>
-                                 <version>${alfresco.version}</version>
-                              </artifactItem>
-                           </artifactItems>
-                        </configuration>
-                     </execution>
-                  </executions>
-               </plugin>
-               <plugin>
-                  <groupId>com.google.code.maven-replacer-plugin</groupId>
-                  <artifactId>replacer</artifactId>
-                  <version>1.5.3</version>
-                  <executions>
-                     <execution>
-                        <phase>prepare-package</phase>
-                        <goals>
-                           <goal>replace</goal>
-                        </goals>
-                     </execution>
-                  </executions>
-                  <configuration>
-                     <includes>
-                        <include>${alfresco.solr.dir}/*-SpacesStore/conf/solrcore.properties</include>
-                     </includes>
-                     <replacements>
-                        <replacement>
-                           <token>@@ALFRESCO_SOLR4_DATA_DIR@@</token>
-                           <value>${alfresco.solr.dir}/index</value>
-                        </replacement>
-                     </replacements>
-                  </configuration>
 
-               </plugin>
+    <dependencies>
+        <!-- The solr war -->
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>${alfresco.solr.id}</artifactId>
+            <version>${alfresco.version}</version>
+            <type>war</type>
+        </dependency>
+        <!-- The Alfresco solr classes for compilation purposes -->
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>${alfresco.solr.id}</artifactId>
+            <version>${alfresco.version}</version>
+            <classifier>classes</classifier>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        <!-- The Zipped solr.home default configuration  -->
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>${alfresco.solr.id}</artifactId>
+            <classifier>config</classifier>
+            <version>${alfresco.version}</version>
+            <type>zip</type>
+        </dependency>
 
-               <!-- Configures tomcat to run against the Alfresco WAR with Tomcat7 virtual webapp features.
-                    (http://tomcat.apache.org/tomcat-7.0-doc/config/context.html#Virtual_webapp)
-                     The target/classes and target/test-classes (containing tests and the amp config for test purposes) are prepended to the
-                     running webapp context, so changes from the IDE are automatically picked up first. See context.xml for details.
-               -->
-               <plugin>
-                  <groupId>org.apache.tomcat.maven</groupId>
-                  <artifactId>tomcat7-maven-plugin</artifactId>
-                  <version>2.2</version>
-                  <executions>
-                     <execution>
-                        <id>run-embedded</id>
-                        <goals>
-                           <goal>run</goal>
-                        </goals>
-                        <phase>integration-test</phase>
+    </dependencies>
+
+    <profiles>
+        <!-- Enable AMP project packing on a WAR and run embedded in Tomcat -->
+        <profile>
+            <id>solr-to-war</id>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+            <build>
+                <plugins>
+                    <!-- Fetch and unpack Alfresco Repository / Share in the target / folder -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack-solr-config</id>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                                <configuration>
+                                    <outputDirectory>${alfresco.solr.dir}</outputDirectory>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <artifactId>${alfresco.solr.id}</artifactId>
+                                            <groupId>${alfresco.groupId}</groupId>
+                                            <classifier>config</classifier>
+                                            <version>${alfresco.version}</version>
+                                            <type>zip</type>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>unpack-alfresco</id>
+                                <phase>prepare-package</phase>
+                                <goals><goal>unpack</goal></goals>
+                                <configuration>
+                                    <outputDirectory>${alfresco.client.war.folder}</outputDirectory>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>${alfresco.groupId}</groupId>
+                                            <artifactId>${alfresco.solr.id}</artifactId>
+                                            <type>war</type>
+                                            <version>${alfresco.version}</version>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.google.code.maven-replacer-plugin</groupId>
+                        <artifactId>replacer</artifactId>
+                        <version>1.5.3</version>
+                        <executions>
+                            <execution>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>replace</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                         <configuration>
-                           <useTestClasspath>false</useTestClasspath>
-                           <ignorePackaging>true</ignorePackaging>
-                           <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
-                           <systemProperties>
-                              <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
-                           </systemProperties>
-                           <delegate>true</delegate>
-                           <contextFile>${project.basedir}/tomcat/context.xml</contextFile>
+                            <includes>
+                                <include>${alfresco.solr.dir}/*-SpacesStore/conf/solrcore.properties</include>
+                            </includes>
+                            <replacements>
+                                <replacement>
+                                    <token>@@ALFRESCO_SOLR4_DATA_DIR@@</token>
+                                    <value>${alfresco.solr.dir}/index</value>
+                                </replacement>
+                            </replacements>
                         </configuration>
-                     </execution>
-                  </executions>
-               </plugin>
-            </plugins>
-         </build>
-         <dependencies>
-            <dependency>
-               <groupId>org.alfresco.maven</groupId>
-               <artifactId>alfresco-rad</artifactId>
-               <version>${maven.alfresco.version}</version>
-            </dependency>
-         </dependencies>
-      </profile>
 
-   </profiles>
+                    </plugin>
+
+                    <!-- Configures tomcat to run against the Alfresco WAR with Tomcat7 virtual webapp features.
+                         (http://tomcat.apache.org/tomcat-7.0-doc/config/context.html#Virtual_webapp)
+                          The target/classes and target/test-classes (containing tests and the amp config for test purposes) are prepended to the
+                          running webapp context, so changes from the IDE are automatically picked up first. See context.xml for details.
+                    -->
+                    <plugin>
+                        <groupId>org.apache.tomcat.maven</groupId>
+                        <artifactId>tomcat7-maven-plugin</artifactId>
+                        <version>2.2</version>
+                        <executions>
+                            <execution>
+                                <id>run-embedded</id>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <phase>integration-test</phase>
+                                <configuration>
+                                    <useTestClasspath>false</useTestClasspath>
+                                    <ignorePackaging>true</ignorePackaging>
+                                    <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+                                    <systemProperties>
+                                        <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
+                                    </systemProperties>
+                                    <delegate>true</delegate>
+                                    <contextFile>${project.basedir}/tomcat/context.xml</contextFile>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <dependencies>
+                <dependency>
+                    <groupId>org.alfresco.maven</groupId>
+                    <artifactId>alfresco-rad</artifactId>
+                    <version>${maven.alfresco.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+    </profiles>
 
 </project>
