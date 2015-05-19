@@ -21,7 +21,7 @@
     <parent>
        <groupId>se.loftux.extensions.pdf-toolkit</groupId>
        <artifactId>pdf-toolkit</artifactId>
-       <version>1.2-SNAPSHOT</version>
+        <version>1.5-SNAPSHOT</version>
     </parent>
 
     <dependencies>
@@ -85,6 +85,14 @@
             <id>run</id>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                        <inherited>false</inherited>
+                    </plugin>
                     <plugin>
                         <artifactId>maven-war-plugin</artifactId>
                         <executions>

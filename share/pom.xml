@@ -10,15 +10,15 @@
     <parent>
         <groupId>se.loftux.extensions.pdf-toolkit</groupId>
         <artifactId>pdf-toolkit</artifactId>
-        <version>1.2-SNAPSHOT</version>
+        <version>1.5-SNAPSHOT</version>
     </parent>
 
     <dependencies>
-        <dependency>
-            <groupId>${alfresco.groupId}</groupId>
-            <artifactId>share</artifactId>
-            <type>war</type>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>${alfresco.groupId}</groupId>-->
+            <!--<artifactId>share</artifactId>-->
+            <!--<type>war</type>-->
+        <!--</dependency>-->
         <!-- PDF Toolkit share AMP -->
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -28,15 +28,25 @@
         </dependency>
        
     </dependencies>
+
     <build>
         <plugins>
-           <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-deploy-plugin</artifactId>
-              <configuration>
-                 <skip>true</skip>
-              </configuration>
-           </plugin>
+           <!--<plugin>-->
+              <!--<groupId>org.apache.maven.plugins</groupId>-->
+              <!--<artifactId>maven-deploy-plugin</artifactId>-->
+              <!--<configuration>-->
+                 <!--<skip>true</skip>-->
+              <!--</configuration>-->
+           <!--</plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+                <inherited>false</inherited>
+            </plugin>
+
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
@@ -67,4 +77,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

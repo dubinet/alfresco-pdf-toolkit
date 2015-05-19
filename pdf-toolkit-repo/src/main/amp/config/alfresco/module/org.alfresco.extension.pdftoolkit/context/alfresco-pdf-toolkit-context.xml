@@ -109,6 +109,7 @@
             </list>
         </property>
         <property name="createNew" value="true"/>
+        <property name="freemarkerProcessor" ref="freeMarkerProcessor"/>
 	</bean>
 	
 	<!-- pdfencryption -->
@@ -178,7 +179,7 @@
         </property>
         <property name="createNew" value="true"/>
 	</bean>
-	
+
 	<!-- pdf-convert-to-archivable -->
    <!--
 	<bean id="pdf-convert-to-archivable"
@@ -217,6 +218,7 @@
       	</property>
    	</bean>
     -->
+
 	<!--<bean id="pdftoolkit-jod" class="org.alfresco.enterprise.repo.content.JodConverterSharedInstance">
        <property name="officeHome">
           <value>${jodconverter.officeHome}</value>

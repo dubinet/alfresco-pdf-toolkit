@@ -9,61 +9,53 @@
     <parent>
         <groupId>se.loftux.extensions.pdf-toolkit</groupId>
         <artifactId>pdf-toolkit</artifactId>
-        <version>1.2-SNAPSHOT</version>
+        <version>${project.version}</version>
     </parent>
 
-   <!-- The folder where the solr.home directory will be created. NOTE: this doesn't get cleaned by mvn clean, you need to invoke -Ppurge to clean this folder or remove it manually  -->
-   <properties>
-      <alfresco.solr.dir>${project.basedir}/solr_home</alfresco.solr.dir>
-      <maven.tomcat.port>8082</maven.tomcat.port>
-      <alfresco.solr.id>alfresco-solr4</alfresco.solr.id>
-      <solr.client.contextPath>/solr4</solr.client.contextPath>
-   </properties>
-
-   <dependencies>
-      <!-- The solr war -->
-      <dependency>
-         <groupId>${alfresco.groupId}</groupId>
-         <artifactId>${alfresco.solr.id}</artifactId>
-         <version>${alfresco.version}</version>
-         <type>war</type>
-      </dependency>
-      <!-- The Alfresco solr classes for compilation purposes -->
-      <dependency>
-         <groupId>${alfresco.groupId}</groupId>
-         <artifactId>${alfresco.solr.id}</artifactId>
-         <version>${alfresco.version}</version>
-         <classifier>classes</classifier>
-         <type>jar</type>
-         <scope>provided</scope>
-      </dependency>
-      <!-- The Zipped solr.home default configuration  -->
-      <dependency>
-         <groupId>${alfresco.groupId}</groupId>
-         <artifactId>${alfresco.solr.id}</artifactId>
-         <classifier>config</classifier>
-         <version>${alfresco.version}</version>
-         <type>zip</type>
-      </dependency>
-
-   </dependencies>
-
-   <profiles>
-      <!-- Enable AMP project packing on a WAR and run embedded in Tomcat -->
-      <profile>
-         <id>solr-to-war</id>
-         <properties>
-            <skipTests>true</skipTests>
-         </properties>
-         <build>
-            <plugins>
-               <!-- Fetch and unpack Alfresco Repository / Share in the target / folder -->
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-dependency-plugin</artifactId>
-                  <executions>
-                     <execution>
-                        <id>unpack-solr-config</id>
+    <properties>
+        <alfresco.solr.dir>${project.basedir}/solr_home</alfresco.solr.dir>
+        <alfresco.solr.war.overlay>${project.build.directory}/${project.artifactId}-overlay</alfresco.solr.war.overlay>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+                <inherited>false</inherited>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-alfresco-community-lib</id>
+                        <goals><goal>unpack</goal></goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <outputDirectory>${alfresco.solr.dir}</outputDirectory>
+                            <artifactItems>
+                                <artifactItem>
+                                    <artifactId>alfresco-solr</artifactId>
+                                    <groupId>${alfresco.groupId}</groupId>
+                                    <version>${alfresco.version}</version>
+                                    <type>zip</type>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>overlay-solr-war</id>
+                        <phase>generate-resources</phase>
                         <goals>
                            <goal>unpack</goal>
                         </goals>

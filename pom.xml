@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>se.loftux.extensions.pdf-toolkit</groupId>
     <artifactId>pdf-toolkit</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.5-SNAPSHOT</version>
     <name>Quickstart of Alfresco and Share with DB and runner embedded</name>
     <description>This All-in-One project allows to manage all the components involved in Alfresco development (Repo, Share, Solr, AMPs) in one project</description>
     <packaging>pom</packaging>    
@@ -13,7 +13,7 @@
         <artifactId>alfresco-sdk-parent</artifactId>
         <version>2.0.1-SNAPSHOT</version>
     </parent>
-    
+
     <!-- 
        | SDK properties have sensible defaults in the SDK parent, but you can override the properties below to use another version. 
        | For more available properties see the alfresco-sdk-parent POM. 
@@ -32,6 +32,7 @@
         <!-- This controls which properties will be picked in multi-enviromment build -->
         <env>local</env>
         <alfresco.client.contextPath>/alfresco</alfresco.client.contextPath>
+        <project.version>1.4-SNAPSHOT</project.version>
     </properties>
 
    <!-- Here we realize the connection with the Alfresco selected platform (e.g.version and edition) -->
@@ -70,10 +71,6 @@
           <url>http://artifacts.loftux.net/nexus/content/repositories/loftux-extension</url>
        </repository>
         <repository>
-            <id>alfresco-public</id>
-            <url>https://artifacts.alfresco.com/nexus/content/groups/public</url>
-        </repository>
-        <repository>
             <id>alfresco-public-snapshots</id>
             <url>https://artifacts.alfresco.com/nexus/content/groups/public-snapshots</url>
         </repository>
@@ -94,7 +91,7 @@
     <module>pdf-toolkit-repo</module>
     <module>pdf-toolkit-share</module>
     <module>alfresco</module>
-    <module>solr</module>
+    <!--<module>solr</module>-->
     <module>share</module>
     <module>runner</module>
   </modules>
