@@ -99,6 +99,40 @@
 			</configurations>
 		</module>
 		<module>
+			<id>PDF Toolkit Actions UI - Collate</id>
+			<description>Expose the collate action doclib action UI</description>
+			<version>1.2</version>
+			<!-- Auto deploy set to true: Loftux-->
+			<auto-deploy>true</auto-deploy>
+			<configurations>
+				<config evaluator="string-compare" condition="DocLibActions">
+					<actions>
+						<action id="pdf-collate"
+								type="javascript"
+								label="actions.pdftoolkit.collatePDF">
+							<param name="function">onActionFormDialog</param>
+							<param name="itemKind">pdf-action</param>
+							<param name="itemId">pdf-collate</param>
+							<param name="mode">create</param>
+							<param name="destination">{node.nodeRef}</param>
+							<param name="successMessage">message.pdf-collate.success</param>
+							<param name="failureMessage">message.pdf-collate.failure</param>
+							<!-- Mimetype evaluator disabled-->
+							<!--<evaluator>evaluator.pdftoolkit.doclib.action.pdfToolkitMimetype</evaluator>-->
+						</action>
+					</actions>
+					<actionGroups>
+						<actionGroup id="folder-browse">
+							<action index="500" id="pdf-collate"/>
+						</actionGroup>
+						<actionGroup id="folder-details">
+							<action index="500" id="pdf-collate"/>
+						</actionGroup>
+					</actionGroups>
+				</config>
+			</configurations>
+		</module>
+		<module>
 			<id>PDF Toolkit Actions UI - Encryption</id>
 			<description>Expose the encryption action doclib action UI</description>
 			<version>1.2</version>

@@ -48,6 +48,22 @@
         <property name="createNew" value="true"/>
 	</bean>
 
+   <!-- pdfappend -->
+	<bean id="pdf-collate"
+		class="org.alfresco.extension.pdftoolkit.repo.action.executer.PDFCollateActionExecuter"
+		parent="action-executer" depends-on="pdftoolkit-messages">
+		<property name="serviceRegistry">
+			<ref bean="ServiceRegistry" />
+		</property>
+		<property name="applicableTypes">
+            <list>
+                <value>{http://www.alfresco.org/model/content/1.0}content</value>
+            </list>
+        </property>
+        <property name="createNew" value="true"/>
+		<property name="fileNameProvider" ref="defaultExistingFileFileNameProvider"/>
+	</bean>
+
 	<!-- pdfsplitatapge -->
 	<bean id="pdf-split-at-page"
 		class="org.alfresco.extension.pdftoolkit.repo.action.executer.PDFSplitAtPageActionExecuter"

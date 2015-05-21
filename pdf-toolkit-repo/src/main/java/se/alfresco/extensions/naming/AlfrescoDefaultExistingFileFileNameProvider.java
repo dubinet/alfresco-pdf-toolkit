@@ -13,7 +13,7 @@ public class AlfrescoDefaultExistingFileFileNameProvider implements FileNameProv
         this.serviceRegistry = serviceRegistry;
     }
 
-    ServiceRegistry serviceRegistry;
+    private ServiceRegistry serviceRegistry;
 
     @Override
     public String getFileName(String filename, NodeRef existingFileNodeRef, NodeRef containerNode) {
@@ -39,6 +39,15 @@ public class AlfrescoDefaultExistingFileFileNameProvider implements FileNameProv
             counter++;
         }
         filename = tmpFilename;
+        return filename;
+    }
+
+    @Override
+    public String getFileName(String filename, NodeRef containerNode) {
+        NodeRef childByName = serviceRegistry.getNodeService().getChildByName(containerNode, ContentModel.ASSOC_CONTAINS, filename);
+        if(childByName != null){
+            return getFileName(filename, childByName, containerNode);
+        }
         return filename;
     }
 }

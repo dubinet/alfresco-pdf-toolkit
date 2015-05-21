@@ -107,6 +107,9 @@ public class PDFAppendActionExecuter
             return;
         }
 
+//        if(serviceRegistry.getDictionaryService().isSubClass(ContentModel.TYPE_CONTAINER, serviceRegistry.getNodeService()))
+
+
         ContentReader contentReader = getReader(actionedUponNodeRef);
         ContentReader targetContentReader = getReader(targetNodeRef);
 

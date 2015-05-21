@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Bean action definitions -->
+	<import resource="classpath:alfresco/module/org.alfresco.extension.pdftoolkit/context/naming-providers-context.xml" />
 	<import resource="classpath:alfresco/module/org.alfresco.extension.pdftoolkit/context/alfresco-pdf-toolkit-context.xml" />
 	
 	<!--  iText transformers -->

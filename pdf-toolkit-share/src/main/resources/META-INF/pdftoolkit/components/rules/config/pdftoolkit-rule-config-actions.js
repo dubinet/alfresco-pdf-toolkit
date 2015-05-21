@@ -83,21 +83,46 @@ if(typeof PDFToolkit == "undefined" || !PDFToolkit)
 					// Hide parameters that have another renderer defined
 					this._getParamDef(configDef, "destination-folder")._type = "hidden";
 					this._getParamDef(configDef, "target-node")._type = "hidden";
-				
+
 					// add custom renderers for hidden fields
 					configDef.parameterDefinitions.splice(0,0,
-					{
-						type: "pdftoolkit:select-file-dialog-button",
-						displayLabel: this.msg("pdftoolkit.append.target-node"),
-						_buttonLabel: this.msg("pdftoolkit.select-node"),
-						_destinationParam: "target-node"
-					},
-					{
-						type: "pdftoolkit:destination-dialog-button",
-						displayLabel: this.msg("pdftoolkit.destination-folder"),
-						_buttonLabel: this.msg("pdftoolkit.select-folder"),
-						_destinationParam: "destination-folder"
-					});
+						{
+							type: "pdftoolkit:select-file-dialog-button",
+							displayLabel: this.msg("pdftoolkit.append.target-node"),
+							_buttonLabel: this.msg("pdftoolkit.select-node"),
+							_destinationParam: "target-node"
+						},
+						{
+							type: "pdftoolkit:destination-dialog-button",
+							displayLabel: this.msg("pdftoolkit.destination-folder"),
+							_buttonLabel: this.msg("pdftoolkit.select-folder"),
+							_destinationParam: "destination-folder"
+						});
+
+					return configDef;
+				}
+			},
+			PDFCollate:
+			{
+				text: function(configDef, ruleConfig, configEl)
+				{
+					// Display as path
+					this._getParamDef(configDef, "target-node")._type = "path";
+					return configDef;
+				},
+				edit: function(configDef, ruleConfig, configEl)
+				{
+					// Hide parameters that have another renderer defined
+					this._getParamDef(configDef, "target-node")._type = "hidden";
+
+					// add custom renderers for hidden fields
+					configDef.parameterDefinitions.splice(0,0,
+						{
+							type: "pdftoolkit:destination-dialog-button",
+							displayLabel: this.msg("pdftoolkit.collate.target-node"),
+							_buttonLabel: this.msg("pdftoolkit.select-node"),
+							_destinationParam: "target-node"
+						});
 
 					return configDef;
 				}

@@ -75,6 +75,9 @@
 	      <action name="pdf-watermark"/>
 	      <action name="pdf-encryption"/>
       </group>
+	   <group>
+		   <action name="pdf-collate"/>
+	   </group>
    </menu>
 
    <customise>
@@ -94,6 +97,7 @@
       <action name="transform-image">Transform</action>
       <action name="import">Import</action>
       <action name="pdf-append">PDFAppend</action>
+      <action name="pdf-collate">PDFCollate</action>
       <action name="pdf-split-at-page">PDFSplitAtPage</action>
       <action name="pdf-delete-page">PDFDeletePage</action>
       <action name="pdf-signature">PDFSignature</action>
