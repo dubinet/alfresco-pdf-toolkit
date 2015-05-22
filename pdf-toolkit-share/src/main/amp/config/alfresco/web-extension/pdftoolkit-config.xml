@@ -50,18 +50,7 @@
 		</forms>
 	</config>
 	
-	<!-- Configure advanced search for pdft:signed aspect in Share -->
-	<config evaluator="string-compare" condition="AdvancedSearch">
-	    <advanced-search>
-	        <forms>
-	            <form labelId="pdftoolkit.aspect.signed.search.type" 
-	            	descriptionId="pdftoolkit.aspect.signed.search.description" id="signedpdfsearch">cm:content</form>
-	            <form labelId="pdftoolkit.aspect.encrypted.search.type" 
-	            	descriptionId="pdftoolkit.aspect.encrypted.search.description" id="encryptedpdfsearch">cm:content</form>
-	        </forms>
-	    </advanced-search>
-	</config>
-	
+
 	<!-- Advanced search form for items with pdft:signed aspect -->
 	<config evaluator="model-type" condition="cm:content">
     	<forms>

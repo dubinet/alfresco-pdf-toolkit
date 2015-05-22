@@ -5,7 +5,7 @@
 		<module>
 			<id>PDF Toolkit Actions UI - Signature</id>
 			<description>Expose the signature action doclib action UI</description>
-			<version>1.2</version>
+			<version>${project.version}</version>
 			<auto-deploy>false</auto-deploy>
 			<configurations>
 				<config evaluator="string-compare" condition="DocLibActions">
@@ -37,7 +37,7 @@
 		<module>
 			<id>PDF Toolkit Actions UI - Watermark</id>
 			<description>Expose the watermark action doclib action UI</description>
-			<version>1.2</version>
+			<version>${project.version}</version>
 			<auto-deploy>false</auto-deploy>
 			<configurations>
 				<config evaluator="string-compare" condition="DocLibActions">
@@ -69,7 +69,7 @@
 		<module>
 			<id>PDF Toolkit Actions UI - Append</id>
 			<description>Expose the append action doclib action UI</description>
-			<version>1.2</version>
+			<version>${project.version}</version>
 			<auto-deploy>false</auto-deploy>
 			<configurations>
 				<config evaluator="string-compare" condition="DocLibActions">
@@ -101,7 +101,7 @@
 		<module>
 			<id>PDF Toolkit Actions UI - Collate</id>
 			<description>Expose the collate action doclib action UI</description>
-			<version>1.2</version>
+			<version>${project.version}</version>
 			<!-- Auto deploy set to true: Loftux-->
 			<auto-deploy>true</auto-deploy>
 			<configurations>
@@ -135,7 +135,7 @@
 		<module>
 			<id>PDF Toolkit Actions UI - Encryption</id>
 			<description>Expose the encryption action doclib action UI</description>
-			<version>1.2</version>
+			<version>${project.version}</version>
 			<auto-deploy>false</auto-deploy>
 			<configurations>
 				<config evaluator="string-compare" condition="DocLibActions">
@@ -167,7 +167,7 @@
 		<module>
 			<id>PDF Toolkit Actions UI - Insert at Page</id>
 			<description>Expose the insert at page action doclib action UI</description>
-			<version>1.2</version>
+			<version>${project.version}</version>
 			<auto-deploy>false</auto-deploy>
 			<configurations>
 				<config evaluator="string-compare" condition="DocLibActions">
@@ -199,7 +199,7 @@
 		<module>
 			<id>PDF Toolkit Actions UI - Split</id>
 			<description>Expose the split action doclib action UI</description>
-			<version>1.2</version>
+			<version>${project.version}</version>
 			<auto-deploy>false</auto-deploy>
 			<configurations>
 				<config evaluator="string-compare" condition="DocLibActions">
@@ -231,7 +231,7 @@
 		<module>
 			<id>PDF Toolkit Actions UI - Split at Page</id>
 			<description>Expose the split at page action doclib action UI</description>
-			<version>1.2</version>
+			<version>${project.version}</version>
 			<auto-deploy>false</auto-deploy>
 			<configurations>
 				<config evaluator="string-compare" condition="DocLibActions">
@@ -263,7 +263,7 @@
 		<module>
 			<id>PDF Toolkit Actions UI - Delete Page</id>
 			<description>Expose the delete page action doclib action UI</description>
-			<version>1.2</version>
+			<version>${project.version}</version>
 			<auto-deploy>false</auto-deploy>
 			<configurations>
 				<!-- Share config elements for the doclib actions -->
@@ -296,7 +296,7 @@
 		<module>
 			<id>PDF Toolkit Actions UI - Transform to PDF/A</id>
 			<description>Expose the PDF/A transformation action doclib action UI</description>
-			<version>1.2</version>
+			<version>${project.version}</version>
 			<auto-deploy>false</auto-deploy>
 			<configurations>
 				<!-- Share config elements for the doclib actions -->
@@ -323,6 +323,26 @@
 							<action index="508" id="pdf-convert-to-archivable"/>
 						</actionGroup>
 					</actionGroups>
+				</config>
+			</configurations>
+		</module>
+
+		<module>
+			<id>PDF Toolkit Advanced Search Extension</id>
+			<description>Advanced Search for PDF toolkit</description>
+			<version>${project.version}</version>
+			<auto-deploy>false</auto-deploy>
+			<configurations>
+				<!-- Configure advanced search for pdft:signed aspect in Share -->
+				<config evaluator="string-compare" condition="AdvancedSearch">
+					<advanced-search>
+						<forms>
+							<form labelId="pdftoolkit.aspect.signed.search.type"
+								  descriptionId="pdftoolkit.aspect.signed.search.description" id="signedpdfsearch">cm:content</form>
+							<form labelId="pdftoolkit.aspect.encrypted.search.type"
+								  descriptionId="pdftoolkit.aspect.encrypted.search.description" id="encryptedpdfsearch">cm:content</form>
+						</forms>
+					</advanced-search>
 				</config>
 			</configurations>
 		</module>
