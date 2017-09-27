@@ -22,9 +22,9 @@
         <!-- 
             | Defines the Alfresco GroupId \ Edition to work against. Allowed values are: org.alfresco | org.alfresco.enterprise
             | NOTE: Please Refer to Alfresco Support for access to Enterprise artifacts -->
-        <alfresco.groupId>se.loftux.alfresco</alfresco.groupId>
+        <alfresco.groupId>org.alfresco</alfresco.groupId>
         <!-- Defines the Alfresco version to work against. Allowed values are: org.alfresco | org.alfresco.enterprise -->
-        <alfresco.version>LX80</alfresco.version>
+        <alfresco.version>LX100</alfresco.version>
         <!-- This control the root logging level for all apps -->
         <app.log.root.level>WARN</app.log.root.level>
         <!-- This controls the default data location for dir.root -->

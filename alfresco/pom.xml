@@ -29,6 +29,7 @@
             <groupId>${alfresco.groupId}</groupId>
             <artifactId>alfresco</artifactId>
             <type>war</type>
+            <version>${alfresco.version}</version>
         </dependency>
         <!-- PDF Toolkit repo AMP -->
         <dependency>

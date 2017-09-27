@@ -14,11 +14,12 @@
     </parent>
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>${alfresco.groupId}</groupId>-->
-            <!--<artifactId>share</artifactId>-->
-            <!--<type>war</type>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>share</artifactId>
+            <type>war</type>
+            <version>${alfresco.version}</version>
+        </dependency>
         <!-- PDF Toolkit share AMP -->
         <dependency>
             <groupId>${project.groupId}</groupId>
